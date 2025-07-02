@@ -31,7 +31,7 @@ def upload_video(video_path, title, description):
         part="snippet,status",
         body={
             "snippet": {
-                "title": title,
+                "title": f"{title} #Shorts",
                 "description": description,
                 "tags": ["weird deaths", "bizarre", "1 million ways to die", "strange history"],
                 "categoryId": "24"  # Entertainment

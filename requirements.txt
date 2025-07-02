@@ -1,6 +1,7 @@
 openai
 requests
 moviepy
+imageio-ffmpeg
 bs4
 google-api-python-client
 google-auth

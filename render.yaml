@@ -1,0 +1,11 @@
+services:
+  - type: cron
+    name: neural-dust-scheduler
+    runtime: python
+    repo: https://github.com/siddarth16/autotube-million-deaths
+    plan: free
+    branch: master
+    schedule: "0 13 * * *"  # Runs daily at 6:30PM IST
+    startCommand: |
+      pip install -r requirements.txt
+      python main.py

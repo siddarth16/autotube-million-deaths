@@ -1,10 +1,9 @@
 import os
-import openai
+from groq import Groq
 from idea_scraper import get_random_death_idea
 
 # Use environment variable for security (set in GitHub Actions or Render)
-openai.api_key = os.getenv("GROQ_API_KEY")
-openai.base_url = "https://api.groq.com/openai/v1"
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 def generate_script(idea):
     prompt = (
@@ -13,7 +12,7 @@ def generate_script(idea):
         "Make it dramatic, eerie, and engaging. Avoid jokes. Keep it tight and intriguing."
     )
 
-    response = openai.chat.completions.create(
+    response = client.chat.completions.create(
         model="llama3-70b-8192",
         messages=[{"role": "user", "content": prompt}],
         temperature=0.7,

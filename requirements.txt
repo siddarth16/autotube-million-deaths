@@ -1,11 +1,12 @@
 openai
 requests
-moviepy[optional]
-imageio-ffmpeg
+moviepy==1.0.3
+imageio==2.31.1
+imageio-ffmpeg==0.4.7
 Pillow
 tqdm
 decorator
-bs4
+beautifulsoup4
 google-api-python-client
 google-auth
 google-auth-oauthlib

@@ -1,7 +1,10 @@
 openai
 requests
-moviepy
+moviepy[optional]
 imageio-ffmpeg
+Pillow
+tqdm
+decorator
 bs4
 google-api-python-client
 google-auth

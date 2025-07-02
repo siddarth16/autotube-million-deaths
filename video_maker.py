@@ -1,6 +1,6 @@
-from moviepy.editor import *
 import os
 import glob
+import moviepy.editor as mpy
 
 def create_video(script_text, frames_dir="tmp/frames", audio_path="tmp/voice.wav", output_path="tmp/final_video.mp4", duration=30):
     image_paths = sorted(glob.glob(os.path.join(frames_dir, "*.jpg")))
@@ -12,21 +12,21 @@ def create_video(script_text, frames_dir="tmp/frames", audio_path="tmp/voice.wav
     # Create vertically cropped or padded image clips
     clips = []
     for img_path in image_paths:
-        img = ImageClip(img_path).set_duration(clip_duration)
+        img = mpy.ImageClip(img_path).set_duration(clip_duration)
         img = img.resize(height=1280).crop(x_center=img.w / 2, width=720)
         clips.append(img)
 
-    video_clip = concatenate_videoclips(clips, method="compose")
+    video_clip = mpy.concatenate_videoclips(clips, method="compose")
 
     # Add voiceover
-    audio_clip = AudioFileClip(audio_path)
+    audio_clip = mpy.AudioFileClip(audio_path)
     video_clip = video_clip.set_audio(audio_clip)
 
     # Add centered subtitle
-    subtitle = TextClip(script_text, fontsize=48, font="Arial-Bold", color="white", method='caption', size=(720, 200))
+    subtitle = mpy.TextClip(script_text, fontsize=48, font="Arial-Bold", color="white", method='caption', size=(720, 200))
     subtitle = subtitle.set_duration(duration).set_position(("center", "bottom"))
 
-    final_video = CompositeVideoClip([video_clip, subtitle], size=(720, 1280))
+    final_video = mpy.CompositeVideoClip([video_clip, subtitle], size=(720, 1280))
     final_video.write_videofile(output_path, fps=24, audio_codec='aac')
 
 # Example usage

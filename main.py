@@ -2,6 +2,10 @@ from idea_scraper import get_random_death_idea
 from script_writer import generate_script
 from image_fetcher import fetch_images
 from tts_engine import generate_voice
+
+import pkg_resources
+print("Installed packages:", [p.project_name for p in pkg_resources.working_set])
+
 from video_maker import create_video
 from uploader import upload_video
 
